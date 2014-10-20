@@ -1,3 +1,14 @@
+/*
+
+Snail Sort Given an array of n x n, return the array elements arranged from outer most elements to the middle element.
+
+array = [[1,2,3],
+         [4,5,6],
+         [7,8,9]]
+snail(array) #=> [1,2,3,6,9,8,7,4,5]
+
+*/
+
 snail = function(array) {
   if (array[0].length === 0) return [];
 
