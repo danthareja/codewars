@@ -1,17 +1,5 @@
 /*
-
-Your relative have decided to open a small Indian restaurant, and so she bought an automatic cooker. It publishes an API function
-
-function cook(
-    /*String// dish,
-    /*Number// nServings
-    /* , other params, specific to the dish - represented by strings 
-) {
-    ...
-}
-which takes an amount of servings, dish name and several other parameters which can vary per dish (yes, this is a very advanced cooking machine).
-The restaurant instantly became very popular, and your relative noticed that most people order some curry with additional ingredients - because she was already tired to repeatedly type the word 'curry' when making a request to cooker. So she decided to ask for your help.
-She cannot lend you her cooker, because it is in constant use - so she needs you to write a function
+write a function
 function curry(fun, /*args) { 
     ...
 }
@@ -38,9 +26,20 @@ obj.foobar() //should return foobar
 
 */
 
-var curry = function(fn) {
-  var args = [].slice.call(arguments, 1);
-  return function() {
-    return fn.apply(this, args);
-  };
+var curry = function(func) {
+  var slice = Array.prototype.slice;
+  var args = slice.call(arguments, 1);
+  var self = this;
+
+  if (func.length > args.length) {
+    return function() {
+      console.log("func on line 36: ", func);
+      return func.apply(self, args.concat(slice.call(arguments)));
+    };
+  } else {
+    return function(){
+      // console.log(func);
+      return func.apply(self, args);
+    }
+  }
 };
