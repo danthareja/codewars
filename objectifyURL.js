@@ -37,10 +37,10 @@ function convertQueryToMap(query) {
 
     keys.reduce(function(params, key, index) {
       if (index === keys.length - 1) {
-        params[key] = value;
+        params[key] = value; // Assign value
       }
-      params[key] = params[key] || {};
-      return params[key];
+      params[key] = params[key] || {}; // Initialize object if not there
+      return params[key]; // Go one level deeper
     }, params);
   });
 
