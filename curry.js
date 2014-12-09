@@ -27,19 +27,8 @@ obj.foobar() //should return foobar
 */
 
 var curry = function(func) {
-  var slice = Array.prototype.slice;
-  var args = slice.call(arguments, 1);
-  var self = this;
-
-  if (func.length > args.length) {
-    return function() {
-      console.log("func on line 36: ", func);
-      return func.apply(self, args.concat(slice.call(arguments)));
-    };
-  } else {
-    return function(){
-      // console.log(func);
-      return func.apply(self, args);
-    }
-  }
+  var args = [].slice.call(arguments, 1);
+  return function() {
+    return func.apply(this, [].concat.apply(args, arguments));
+  };
 };
